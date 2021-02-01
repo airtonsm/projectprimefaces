@@ -2,12 +2,19 @@ package posjavamavenhibernate;
 
 import java.util.List;
 
+import javax.persistence.Persistence;
+
 import org.junit.Test;
 
 import dao.DaoGeneric;
 import model.UsuarioPessoa;
 
 public class TesteHibernate {
+	
+	
+	public void createTableDatabase() { // cria tabelas no banco de dados da aplicação
+		Persistence.createEntityManagerFactory("pos-java-maven-hibernate");
+	}
 	
 	@Test
 	public void testeHibernateUtil(){

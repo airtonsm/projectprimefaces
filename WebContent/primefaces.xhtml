@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Index</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Página Jsf" action="index.jsf" />
+			<p:menuitem value="Página PrimeFaces" action="primefaces.jsf" />
+		</p:breadCrumb>
+
+	</h:form>
+
+
+	<h:form id="formData">
+		<h:messages />
+
+		<p:panelGrid columns="2">
+
+			<h:outputLabel value="ID: " />
+			<p:inputText readonly="true"
+				value="#{usuarioPessoaManagedBean.usuarioPessoa.id}" />
+
+			<h:outputLabel value="Nome: " />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}"
+				required="true" requiredMessage="Nome não informado" />
+
+			<h:outputLabel value="SobreNome:  " />
+			<p:inputText
+				value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" />
+
+			<h:outputLabel value="Email: " />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
+
+			<h:outputLabel value="Idade: " />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
+
+			<h:outputLabel value="Login " />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" />
+
+			<h:outputLabel value="Senha: " />
+			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" />
+
+			<h:panelGroup>
+				<p:commandButton value="Cadastrar"
+					action="#{usuarioPessoaManagedBean.salvar}">
+				</p:commandButton>
+
+				<p:commandButton value="novo" id="Botaonovo"
+					action="#{usuarioPessoaManagedBean.novo}">
+					<f:ajax execute="Botaonovo" render="@form" />
+				</p:commandButton>
+
+			</h:panelGroup>
+
+		</p:panelGrid>
+
+
+
+	</h:form>
+
+	<h:form id="formTable">
+
+		<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user"
+			cellpadding="15" border="1">
+
+
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+</html>

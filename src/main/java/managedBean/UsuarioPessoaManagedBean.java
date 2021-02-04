@@ -34,16 +34,20 @@ public class UsuarioPessoaManagedBean {
 
 	public String salvar() {
 		daoGeneric.salvar(usuarioPessoa);
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Cadastrado com sucesso!!!"));
 		return "";
 	}
 
 	public void novo() {
-		usuarioPessoa = new UsuarioPessoa();		
+		usuarioPessoa = new UsuarioPessoa();
 	}
 
 	public String deletar() {
 		daoGeneric.deletarPoId(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Removido com sucesso!!!"));
 		return "";
 
 	}

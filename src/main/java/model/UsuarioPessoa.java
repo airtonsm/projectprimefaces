@@ -18,6 +18,15 @@ public class UsuarioPessoa {
 	private String login;
 	private String senha;
 	private int idade;
+	private String sexo;
+	
+	public String getSexo() {
+		return sexo;
+	}
+	
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
 
 	public void setIdade(int idade) {
 		this.idade = idade;

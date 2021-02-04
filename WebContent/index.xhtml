@@ -9,7 +9,7 @@
 </h:head>
 
 <h:body>
-	
+
 	<h:form>
 
 		<p:breadCrumb>
@@ -21,7 +21,7 @@
 	</h:form>
 
 	<h:form id="formData">
-		<h:messages />
+		<h:messages showDetail="true" showSummary="false"/>
 
 		<h:panelGrid columns="2">
 
@@ -43,6 +43,13 @@
 			<h:outputLabel value="Idade: " />
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
 
+			<h:outputLabel>Sexo : </h:outputLabel>
+			<h:selectOneMenu
+				value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+				<f:selectItem itemValue="MASCULINO" />
+				<f:selectItem itemValue="FEMININO" />
+			</h:selectOneMenu>
+
 			<h:outputLabel value="Login " />
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" />
 
@@ -59,6 +66,8 @@
 					actionListener="#{usuarioPessoaManagedBean.novo}" immediate="true">
 					<f:ajax execute="Botaonovo" render="formData" />
 				</h:commandButton>
+				
+				
 
 			</h:panelGroup>
 
@@ -93,6 +102,17 @@
 			</h:column>
 
 			<h:column>
+				<f:facet name="header">Idade</f:facet>
+				<h:outputText value="#{user.idade}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Sexo</f:facet>
+				<h:outputText value="#{user.sexo}" />
+			</h:column>
+
+
+			<h:column>
 				<f:facet name="header">Email </f:facet>
 				<h:outputText value="#{user.email}" />
 			</h:column>
@@ -109,19 +129,30 @@
 
 			<h:column>
 				<f:facet name="header">Edita </f:facet>
-				<h:commandLink value="Editar" immediate="true">
+				<h:commandLink immediate="true">
+					<h:graphicImage url="/resources/img/edit.png" title="editar" id="botaoeditar" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-
+					
 				</h:commandLink>
 			</h:column>
 
 			<h:column>
 				<f:facet name="header">deletar</f:facet>
-				<h:commandLink value="Deletar"
-					action="#{usuarioPessoaManagedBean.deletar}" immediate="true">
+				<h:commandLink action="#{usuarioPessoaManagedBean.deletar}"
+					immediate="true">
+					<h:graphicImage url="/resources/img/delete.png" title="delete" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+				</h:commandLink>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Telefones</f:facet>
+				<h:commandLink url="telefone.jsf"
+					immediate="true">
+					<h:graphicImage url="/resources/img/fone.png" title="telefone" />
+					<f:param name="codigouser" value="#{user.id}"/>
 				</h:commandLink>
 			</h:column>
 

@@ -78,8 +78,10 @@ public class TelefoneManagedBean {
 	}
 	
 	public void deletar() {
-		daoTelefone.deletarPoId(getTelefone());
+		daoTelefone.deletarPoId(telefone);
 		telefone = new TelefoneUser();
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Removido com sucesso!!!"));
 	}
 
 }

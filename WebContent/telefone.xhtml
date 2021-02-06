@@ -28,59 +28,64 @@
 
 		<h:panelGrid columns="2">
 			<h:outputLabel value="Usuário: " />
-			<h:inputText value="#{telefoneManaged.user.nome}"/>
-			
-			<h:outputLabel value="Número: "/>
-			<h:inputText value="#{telefoneManaged.telefone.numero}"/>
-			
-			<h:outputLabel value="Tipo: "/>
-			<h:inputText value="#{telefoneManaged.telefone.tipo}"/>
-			
+			<h:inputText value="#{telefoneManaged.user.nome}" />
+
+			<h:outputLabel value="Número: " />
+			<h:inputText value="#{telefoneManaged.telefone.numero}" />
+
+			<h:outputLabel value="Tipo: " />
+			<h:inputText value="#{telefoneManaged.telefone.tipo}" />
+
 		</h:panelGrid>
-		
-		<br/>
-		<br/>
-		
-		<h:commandButton value="Salvar" action="#{telefoneManaged.salvar}"/>		
+
+		<br />
+		<br />
+
+		<h:commandButton value="Salvar" action="#{telefoneManaged.salvar}" />
 
 	</h:form>
-	
+
 	<h:form id="formTable">
-	
-	<h:dataTable value="#{telefoneManaged.list}" var="t" border="1">
-	
-	<f:facet name="header">Lista Telefônica de usuários</f:facet>
-	
-	<h:column>
-		<f:facet name="header">Usuário</f:facet>
-		<h:outputText value="#{t.usuarioPessoa.nome}"/>
-	</h:column>
-	
-	<h:column>
-		<f:facet name="header">Número </f:facet>
-		<h:outputText value="#{t.numero}"/>
-	</h:column>	
-	
-	<h:column>
-		<f:facet name="header">Tipo</f:facet>
-		<h:outputText value="#{t.tipo}"/>
-	</h:column>
-	
-	<h:column>
-		<f:facet name="header">Excluir</f:facet>
-		<h:commandLink value="Excluir" actionListener="#{telefoneManaged.deletar}"/>
-	</h:column>
-	
-	
-	
-	
-	</h:dataTable>
-	
-	
-	
-	
-	
-	
+
+		<h:dataTable value="#{telefoneManaged.list}" var="t" border="1">
+
+			<f:facet name="header">Lista Telefônica de usuários</f:facet>
+
+			<h:column>
+				<f:facet name="header">Usuário</f:facet>
+				<h:outputText value="#{t.usuarioPessoa.nome}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Número </f:facet>
+				<h:outputText value="#{t.numero}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputText value="#{t.tipo}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink	actionListener="#{telefoneManaged.deletar}" immediate="true">
+					<h:graphicImage url="/resources/img/delete.png"/>
+					<f:setPropertyActionListener value="#{t}"
+						target="#{telefoneManaged.telefone}" />
+				</h:commandLink>
+
+			</h:column>
+
+
+
+
+		</h:dataTable>
+
+
+
+
+
+
 	</h:form>
 
 

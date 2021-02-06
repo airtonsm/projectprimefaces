@@ -21,7 +21,8 @@
 	</h:form>
 
 	<h:form id="formData">
-		<h:messages showDetail="true" showSummary="false" />
+
+		<h:messages showDetail="true" showSummary="false" id="msg" />
 
 		<h1>Telefones</h1>
 
@@ -45,9 +46,10 @@
 
 	</h:form>
 
-	<h:form id="formTable">
+	<h:form id="formTelefone">
 
-		<h:dataTable value="#{telefoneManaged.list}" var="t" border="1">
+		<h:dataTable value="#{telefoneManaged.user.telefoneUsers}" var="t" border="1"
+			cellpadding="15" id="tableFone">
 
 			<f:facet name="header">Lista Telefônica de usuários</f:facet>
 
@@ -68,24 +70,17 @@
 
 			<h:column>
 				<f:facet name="header">Excluir</f:facet>
-				<h:commandLink	actionListener="#{telefoneManaged.deletar}" immediate="true">
-					<h:graphicImage url="/resources/img/delete.png"/>
+				<h:commandLink action="#{telefoneManaged.deletar}" immediate="true"
+					id="botaoremover">
+					<h:graphicImage url="/resources/img/delete.png" />
 					<f:setPropertyActionListener value="#{t}"
 						target="#{telefoneManaged.telefone}" />
+					<f:ajax execute="botaoremover" render="@form :formData:msg" />
 				</h:commandLink>
 
 			</h:column>
 
-
-
-
 		</h:dataTable>
-
-
-
-
-
-
 	</h:form>
 
 

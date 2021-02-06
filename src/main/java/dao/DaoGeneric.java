@@ -38,12 +38,13 @@ public class DaoGeneric<E> {
 	}
 
 	public E pesquisar(Long id, Class<E> entidade) {
-		E e = (E) entityManager.find(entidade, id);
+		entityManager.clear();
+		E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
 		return e;
 
 	}
 
-	public void deletarPoId(E entidade) {
+	public void deletarPoId(E entidade) throws Exception {
 
 		Object id = HibernateUtil.getPrimaryKey(entidade);
 
@@ -53,8 +54,8 @@ public class DaoGeneric<E> {
 		entityManager
 				.createNativeQuery(
 						"delete from " + entidade.getClass().getSimpleName().toLowerCase() + " where id =" + id)
-				.executeUpdate(); // faz delete
-		transaction.commit();// grava alteração no banco
+				.executeUpdate();
+		transaction.commit();
 
 	}
 
@@ -67,6 +68,10 @@ public class DaoGeneric<E> {
 		transaction.commit();
 
 		return lista;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 }

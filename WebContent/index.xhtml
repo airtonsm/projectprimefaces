@@ -21,7 +21,7 @@
 	</h:form>
 
 	<h:form id="formData">
-		<h:messages showDetail="true" showSummary="false"/>
+		<h:messages showDetail="true" showSummary="false" id="msg"/>
 
 		<h:panelGrid columns="2">
 
@@ -138,10 +138,11 @@
 			<h:column>
 				<f:facet name="header">deletar</f:facet>
 				<h:commandLink action="#{usuarioPessoaManagedBean.deletar}"
-					immediate="true">
+					immediate="true" id="bataoremover">
 					<h:graphicImage url="/resources/img/delete.png" title="delete" />
 					<f:setPropertyActionListener value="#{user}"
 						target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					<f:ajax execute="bataoremover" render="@form :formData:msg"/>
 				</h:commandLink>
 			</h:column>
 			

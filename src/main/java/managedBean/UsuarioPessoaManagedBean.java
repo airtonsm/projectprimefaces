@@ -15,8 +15,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.apache.catalina.User;
-
 import com.google.gson.Gson;
 
 import dao.DaoGeneric;
@@ -89,7 +87,6 @@ public class UsuarioPessoaManagedBean {
 		
 		try {
 			
-			System.out.println("Cep digitado " + usuarioPessoa.getCep()); 
 			URL url = new URL("https://viacep.com.br/ws/" + usuarioPessoa.getCep() + "/json/");
 			URLConnection connection = url.openConnection();
 			InputStream is = connection.getInputStream();

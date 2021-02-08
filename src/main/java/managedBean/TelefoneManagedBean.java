@@ -82,6 +82,7 @@ public class TelefoneManagedBean {
 
 	public String deletar() {
 		try {
+
 		daoTelefone.deletarPoId(telefone);		
 		user = daoUser.pesquisar(user.getId(), UsuarioPessoa.class);
 		telefone = new TelefoneUser();

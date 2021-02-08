@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Index</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Página Jsf" action="index.jsf" />
+			<p:menuitem value="Página PrimeFaces" action="primefaces.jsf" />
+		</p:breadCrumb>
+
+	</h:form>
+
+	<h:form id="formData">
+
+		<p:messages autoUpdate="true" showDetail="true" id="msg"/>
+
+		<h1>Telefones</h1>
+
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Usuário: " />
+			<p:inputText value="#{telefoneManaged.user.nome}" />
+
+			<p:outputLabel value="Número: " />
+			<p:inputText value="#{telefoneManaged.telefone.numero}" />
+
+			<p:outputLabel value="Tipo: " />
+			<p:inputText value="#{telefoneManaged.telefone.tipo}" />
+
+		</p:panelGrid>
+
+		<br />
+		<br />
+
+		<p:commandButton value="Salvar" action="#{telefoneManaged.salvar}" ajax="false"/>
+
+	</h:form>
+
+	<h:form id="formTelefone">
+
+		<p:dataTable value="#{telefoneManaged.user.telefoneUsers}" var="fone" border="1" id="tableFone">
+
+			<f:facet name="header">Lista Telefônica de usuários</f:facet>
+			
+			<p:column headerText="Id">
+				<h:outputText value="#{fone.id}"/>
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{fone.usuarioPessoa.nome}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Número </f:facet>
+				<h:outputText value="#{fone.numero}" />
+			</p:column>
+
+			<p:column>
+				<f:facet name="header">Tipo</f:facet>
+				<h:outputText value="#{t.tipo}" />
+			</p:column>
+
+			<p:column headerText="Excluir">
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink action="#{telefoneManaged.deletar}" immediate="true"
+					id="botaoremover" ajax="false">
+					<h:graphicImage url="/resources/img/delete.png" />
+					<f:setPropertyActionListener value="#{fone}"
+						target="#{telefoneManaged.telefone}" />
+					<f:ajax execute="botaoremover" render="@form" />
+				</h:commandLink>
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+
+</h:body>
+</html>

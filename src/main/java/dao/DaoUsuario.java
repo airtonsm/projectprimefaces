@@ -1,8 +1,12 @@
 package dao;
 
+import java.io.Serializable;
+
 import model.UsuarioPessoa;
 
-public class DaoUsuario extends DaoGeneric<UsuarioPessoa> {
+public class DaoUsuario extends DaoGeneric<UsuarioPessoa> implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	public void removerUsuario(UsuarioPessoa pessoa) throws Exception  {
 		
